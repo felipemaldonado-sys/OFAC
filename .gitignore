@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+data/ofac.db
+data/ofac.db-shm
+data/ofac.db-wal
+data/uploads/
+data/ofac-data.js
+data/hosting.json

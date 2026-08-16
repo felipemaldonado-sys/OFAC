@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador OFAC / ONU</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">OFAC</div>
+          <div>
+            <p class="eyebrow">Listas restrictivas</p>
+            <h1>Buscador OFAC / ONU</h1>
+            <p>Cruce por nombre e identificación sobre las bases activas.</p>
+          </div>
+        </div>
+        <div class="meta">
+          <a class="nav-link" href="/admin">Administrar bases</a>
+          <strong id="total-registros">—</strong>
+          <p id="bases-activas">registros cargados</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Consultar coincidencias</h2>
+            <p class="hint">Las dos búsquedas viven en la misma pantalla. Puede usar una o las dos al tiempo.</p>
+          </div>
+        </div>
+
+        <form id="search-form">
+          <div class="grid">
+            <div class="field">
+              <label for="nombre">
+                Nombre
+                <span class="threshold">umbral 50%</span>
+              </label>
+              <input
+                id="nombre"
+                name="nombre"
+                type="search"
+                placeholder="Ej. Juan Castro"
+                autocomplete="off"
+              />
+              <small>Marca desde 50%: basta con que coincida la mitad, aunque la lista esté incompleta o mal escrita.</small>
+            </div>
+
+            <div class="field">
+              <label for="identificacion">
+                Identificación / ID
+                <span class="threshold">umbral 95%</span>
+              </label>
+              <input
+                id="identificacion"
+                name="identificacion"
+                type="search"
+                placeholder="Cédula, pasaporte o ID interno"
+                autocomplete="off"
+              />
+              <small>Exige un cruce casi exacto contra la identificación o el ID interno.</small>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" type="submit">Buscar coincidencias</button>
+            <button class="ghost" id="clear-btn" type="button">Limpiar</button>
+            <button class="linkish" id="export-btn" type="button" hidden>Exportar CSV</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="results" id="results"></section>
+      <p class="foot" id="foot-bases">Cargando bases activas…</p>
+    </main>
+
+    <script src="/js/matcher.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

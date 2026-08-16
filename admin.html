@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar bases · OFAC / ONU</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">BASES</div>
+          <div>
+            <p class="eyebrow">Vista de administración</p>
+            <h1>Cargar listas restrictivas</h1>
+            <p>Suba Excel con la misma estructura. El buscador las cruza juntas.</p>
+          </div>
+        </div>
+        <div class="meta">
+          <a class="nav-link" href="/">Ir al buscador</a>
+          <strong id="total-registros">—</strong>
+          <p>registros activos</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Alojamiento en GitHub</h2>
+            <p class="hint" id="hosting-message">Para que una base subida quede en internet, conéctela a un repositorio privado.</p>
+          </div>
+          <a class="ghost" href="https://github.com/new" target="_blank" rel="noreferrer">Crear repo</a>
+        </div>
+        <form id="hosting-form">
+          <div class="grid">
+            <div class="field">
+              <label for="repo">Repositorio</label>
+              <input id="repo" name="repo" type="text" placeholder="usuario/ofac-bases" autocomplete="off" />
+              <small>Use un repo privado. Ahí quedará la carpeta <code>bases/</code>.</small>
+            </div>
+            <div class="field">
+              <label for="token">Token de GitHub</label>
+              <input id="token" name="token" type="password" placeholder="ghp_..." autocomplete="off" />
+              <small>Token clásico con permiso <code>repo</code>. Se guarda solo en este computador.</small>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="primary" type="submit" id="hosting-btn">Conectar GitHub</button>
+            <button class="ghost" type="button" id="publish-btn">Publicar bases actuales</button>
+            <p class="status" id="hosting-status" hidden></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Nueva base</h2>
+            <p class="hint">Columnas requeridas: ID interno, NOMBRE, Identificación, LISTA.</p>
+          </div>
+          <a class="ghost" href="/api/plantilla.xlsx">Descargar plantilla</a>
+        </div>
+
+        <form id="upload-form">
+          <div class="grid">
+            <div class="field">
+              <label for="nombre">Nombre de la base</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Ej. Lista ONU agosto 2026" />
+              <small>Si lo deja vacío, se usa el nombre del archivo.</small>
+            </div>
+            <div class="field">
+              <label for="archivo">Archivo Excel</label>
+              <input id="archivo" name="archivo" type="file" accept=".xlsx,.xls" />
+              <small>Se suma a las bases ya cargadas. No reemplaza la lista actual.</small>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="primary" type="submit" id="upload-btn">Subir base</button>
+            <p class="status" id="upload-status" hidden></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="results" id="bases"></section>
+      <p class="foot">Las bases activas alimentan el buscador. Puede apagar una lista sin borrarla.</p>
+    </main>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
