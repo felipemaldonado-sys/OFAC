@@ -6,10 +6,9 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from .store import BASES_DIR
+from .paths import BASES_DIR, HOSTING_PATH
 
-ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "data" / "hosting.json"
+CONFIG_PATH = HOSTING_PATH
 REMOTE_DIR = "bases"
 
 

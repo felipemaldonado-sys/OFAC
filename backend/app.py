@@ -14,11 +14,10 @@ from . import db
 from . import github_host
 from .excel import parse_excel
 from .matcher import search_records, tokenize
+from .paths import ROOT, SEED_XLSX, UPLOADS_DIR, ensure_data_dirs
 from .store import delete_base_file, read_all, write_base, write_index
 
-ROOT = Path(__file__).resolve().parents[1]
-UPLOADS = ROOT / "data" / "uploads"
-SEED_XLSX = ROOT / "data" / "Lista Ofac 14082026.xlsx"
+UPLOADS = UPLOADS_DIR
 
 _cache: dict = {"records": None}
 
@@ -82,6 +81,7 @@ def with_hosting(stats: dict) -> dict:
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
+    ensure_data_dirs()
     UPLOADS.mkdir(parents=True, exist_ok=True)
     seed_if_empty()
     cached_records()

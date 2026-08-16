@@ -5,9 +5,7 @@ import re
 from pathlib import Path
 
 from .matcher import fold
-
-ROOT = Path(__file__).resolve().parents[1]
-BASES_DIR = ROOT / "data" / "bases"
+from .paths import BASES_DIR
 
 
 def slugify(name: str) -> str:
